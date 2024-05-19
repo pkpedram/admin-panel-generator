@@ -1,0 +1,5482 @@
+{
+  "parts": [
+    {
+      "name": "accounts",
+      "faName": "",
+      "subParts": [
+        {
+          "name": "AuthApple",
+          "faName": "",
+          "url": "/accounts/auth/apple/",
+          "getSchema": null,
+          "postSchema": {
+            "type": "object",
+            "properties": {
+              "access_token": { "title": "Access token", "type": "string" },
+              "code": { "title": "Code", "type": "string" },
+              "id_token": { "title": "Id token", "type": "string" }
+            }
+          },
+          "actions": ["postAuthApple"],
+          "states": ["AuthAppleList"],
+          "isInfo": false
+        },
+        {
+          "name": "AuthFacebook",
+          "faName": "",
+          "url": "/accounts/auth/facebook/",
+          "getSchema": null,
+          "postSchema": {
+            "type": "object",
+            "properties": {
+              "access_token": { "title": "Access token", "type": "string" },
+              "code": { "title": "Code", "type": "string" },
+              "id_token": { "title": "Id token", "type": "string" }
+            }
+          },
+          "actions": ["postAuthFacebook"],
+          "states": ["AuthFacebookList"],
+          "isInfo": false
+        },
+        {
+          "name": "AuthGoogle",
+          "faName": "",
+          "url": "/accounts/auth/google/",
+          "getSchema": null,
+          "postSchema": {
+            "type": "object",
+            "properties": {
+              "access_token": { "title": "Access token", "type": "string" },
+              "code": { "title": "Code", "type": "string" },
+              "id_token": { "title": "Id token", "type": "string" }
+            }
+          },
+          "actions": ["postAuthGoogle"],
+          "states": ["AuthGoogleList"],
+          "isInfo": false
+        },
+        {
+          "name": "ChargeWallet",
+          "faName": "",
+          "url": "/accounts/charge-wallet/",
+          "getSchema": {
+            "required": ["related_payment"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_payment": { "$ref": "#/definitions/Payment" },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "amount": {
+                "title": "مقدار (ریال)",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              }
+            }
+          },
+          "postSchema": {
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "amount": {
+                "title": "مقدار (ریال)",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              },
+              "related_payment": {
+                "title": "پرداخت مربوطه",
+                "type": "integer",
+                "readOnly": true
+              }
+            }
+          },
+          "actions": ["getChargeWalletList", "postChargeWallet"],
+          "states": ["ChargeWalletList"],
+          "isInfo": false
+        },
+        {
+          "name": "ChargeWalletInfo",
+          "faName": "",
+          "url": "/accounts/charge-wallet/:id",
+          "getSchema": {
+            "required": ["related_payment"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_payment": { "$ref": "#/definitions/Payment" },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "amount": {
+                "title": "مقدار (ریال)",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              }
+            }
+          },
+          "postSchema": {
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "amount": {
+                "title": "مقدار (ریال)",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              },
+              "related_payment": {
+                "title": "پرداخت مربوطه",
+                "type": "integer",
+                "readOnly": true
+              }
+            }
+          },
+          "actions": [
+            "getChargeWalletInfo",
+            "putChargeWallet",
+            "patchChargeWallet",
+            "deleteChargeWallet"
+          ],
+          "states": ["ChargeWalletInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Login",
+          "faName": "",
+          "url": "/accounts/login/",
+          "getSchema": null,
+          "postSchema": {
+            "required": ["phone_number", "otp"],
+            "type": "object",
+            "properties": {
+              "phone_number": {
+                "title": "Phone number",
+                "type": "string",
+                "minLength": 1
+              },
+              "otp": { "title": "Otp", "type": "string", "minLength": 1 }
+            }
+          },
+          "actions": ["postLogin"],
+          "states": ["LoginList"],
+          "isInfo": false
+        },
+        {
+          "name": "Otp",
+          "faName": "",
+          "url": "/accounts/otp/",
+          "getSchema": null,
+          "postSchema": {
+            "required": ["phone_number"],
+            "type": "object",
+            "properties": {
+              "phone_number": {
+                "title": "Phone number",
+                "type": "string",
+                "pattern": "^9\\d{9}$",
+                "minLength": 1
+              }
+            }
+          },
+          "actions": ["postOtp"],
+          "states": ["OtpList"],
+          "isInfo": false
+        },
+        {
+          "name": "PassportIssure",
+          "faName": "",
+          "url": "/accounts/passport-issure/",
+          "getSchema": {
+            "required": ["title"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_active": { "title": "فعال", "type": "boolean" },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_active": { "title": "فعال", "type": "boolean" },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": ["getPassportIssureList", "postPassportIssure"],
+          "states": ["PassportIssureList"],
+          "isInfo": false
+        },
+        {
+          "name": "PassportIssureInfo",
+          "faName": "",
+          "url": "/accounts/passport-issure/:id",
+          "getSchema": {
+            "required": ["title"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_active": { "title": "فعال", "type": "boolean" },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_active": { "title": "فعال", "type": "boolean" },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": [
+            "getPassportIssureInfo",
+            "putPassportIssure",
+            "patchPassportIssure",
+            "deletePassportIssure"
+          ],
+          "states": ["PassportIssureInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Profile",
+          "faName": "",
+          "url": "/accounts/profile/",
+          "getSchema": {
+            "required": ["passport_issure"],
+            "type": "object",
+            "properties": {
+              "f_name": { "title": "نام", "type": "string", "maxLength": 200 },
+              "l_name": {
+                "title": "نام خانوادگی",
+                "type": "string",
+                "maxLength": 200
+              },
+              "email": {
+                "title": "آدرس ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254
+              },
+              "gender": {
+                "title": "جنسیت",
+                "type": "string",
+                "enum": ["Female", "Male"],
+                "x-nullable": true
+              },
+              "passport_issure": { "$ref": "#/definitions/PassportIssure" },
+              "national_id": {
+                "title": "کدملی",
+                "type": "string",
+                "maxLength": 10,
+                "x-nullable": true
+              },
+              "passport_number": {
+                "title": "شماره پاسپورت",
+                "type": "string",
+                "maxLength": 20,
+                "x-nullable": true
+              },
+              "birth_date": {
+                "title": "تاریخ تولد",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "passport_expire_date": {
+                "title": "تاریخ انقضا پاسپورت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "wallet": {
+                "title": "کیف پول",
+                "type": "integer",
+                "readOnly": true
+              },
+              "avatar": {
+                "title": "آواتار",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "phone_number": {
+                "title": "Phone number",
+                "type": "string",
+                "pattern": "^9\\d{9}$",
+                "maxLength": 10,
+                "x-nullable": true
+              }
+            }
+          },
+          "postSchema": {
+            "type": "object",
+            "properties": {
+              "f_name": { "title": "نام", "type": "string", "maxLength": 200 },
+              "l_name": {
+                "title": "نام خانوادگی",
+                "type": "string",
+                "maxLength": 200
+              },
+              "email": {
+                "title": "آدرس ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254
+              },
+              "gender": {
+                "title": "جنسیت",
+                "type": "string",
+                "enum": ["Female", "Male"],
+                "x-nullable": true
+              },
+              "passport_issure": {
+                "title": "صادرکننده پاسپورت",
+                "type": "integer",
+                "x-nullable": true
+              },
+              "national_id": {
+                "title": "کدملی",
+                "type": "string",
+                "maxLength": 10,
+                "x-nullable": true
+              },
+              "passport_number": {
+                "title": "شماره پاسپورت",
+                "type": "string",
+                "maxLength": 20,
+                "x-nullable": true
+              },
+              "birth_date": {
+                "title": "تاریخ تولد",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "passport_expire_date": {
+                "title": "تاریخ انقضا پاسپورت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "wallet": {
+                "title": "کیف پول",
+                "type": "integer",
+                "readOnly": true
+              },
+              "avatar": {
+                "title": "آواتار",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "phone_number": {
+                "title": "Phone number",
+                "type": "string",
+                "pattern": "^9\\d{9}$",
+                "maxLength": 10,
+                "x-nullable": true
+              }
+            }
+          },
+          "actions": ["getProfileList", "postProfile"],
+          "states": ["ProfileList"],
+          "isInfo": false
+        },
+        {
+          "name": "ProfileInfo",
+          "faName": "",
+          "url": "/accounts/profile/:id",
+          "getSchema": {
+            "required": ["passport_issure"],
+            "type": "object",
+            "properties": {
+              "f_name": { "title": "نام", "type": "string", "maxLength": 200 },
+              "l_name": {
+                "title": "نام خانوادگی",
+                "type": "string",
+                "maxLength": 200
+              },
+              "email": {
+                "title": "آدرس ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254
+              },
+              "gender": {
+                "title": "جنسیت",
+                "type": "string",
+                "enum": ["Female", "Male"],
+                "x-nullable": true
+              },
+              "passport_issure": { "$ref": "#/definitions/PassportIssure" },
+              "national_id": {
+                "title": "کدملی",
+                "type": "string",
+                "maxLength": 10,
+                "x-nullable": true
+              },
+              "passport_number": {
+                "title": "شماره پاسپورت",
+                "type": "string",
+                "maxLength": 20,
+                "x-nullable": true
+              },
+              "birth_date": {
+                "title": "تاریخ تولد",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "passport_expire_date": {
+                "title": "تاریخ انقضا پاسپورت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "wallet": {
+                "title": "کیف پول",
+                "type": "integer",
+                "readOnly": true
+              },
+              "avatar": {
+                "title": "آواتار",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "phone_number": {
+                "title": "Phone number",
+                "type": "string",
+                "pattern": "^9\\d{9}$",
+                "maxLength": 10,
+                "x-nullable": true
+              }
+            }
+          },
+          "postSchema": {
+            "type": "object",
+            "properties": {
+              "f_name": { "title": "نام", "type": "string", "maxLength": 200 },
+              "l_name": {
+                "title": "نام خانوادگی",
+                "type": "string",
+                "maxLength": 200
+              },
+              "email": {
+                "title": "آدرس ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254
+              },
+              "gender": {
+                "title": "جنسیت",
+                "type": "string",
+                "enum": ["Female", "Male"],
+                "x-nullable": true
+              },
+              "passport_issure": {
+                "title": "صادرکننده پاسپورت",
+                "type": "integer",
+                "x-nullable": true
+              },
+              "national_id": {
+                "title": "کدملی",
+                "type": "string",
+                "maxLength": 10,
+                "x-nullable": true
+              },
+              "passport_number": {
+                "title": "شماره پاسپورت",
+                "type": "string",
+                "maxLength": 20,
+                "x-nullable": true
+              },
+              "birth_date": {
+                "title": "تاریخ تولد",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "passport_expire_date": {
+                "title": "تاریخ انقضا پاسپورت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "wallet": {
+                "title": "کیف پول",
+                "type": "integer",
+                "readOnly": true
+              },
+              "avatar": {
+                "title": "آواتار",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "phone_number": {
+                "title": "Phone number",
+                "type": "string",
+                "pattern": "^9\\d{9}$",
+                "maxLength": 10,
+                "x-nullable": true
+              }
+            }
+          },
+          "actions": [
+            "getProfileInfo",
+            "putProfile",
+            "patchProfile",
+            "deleteProfile"
+          ],
+          "states": ["ProfileInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Register",
+          "faName": "",
+          "url": "/accounts/register/",
+          "getSchema": null,
+          "postSchema": {
+            "required": ["otp"],
+            "type": "object",
+            "properties": {
+              "phone_number": {
+                "title": "Phone number",
+                "type": "string",
+                "pattern": "^9\\d{9}$",
+                "maxLength": 10,
+                "x-nullable": true
+              },
+              "otp": { "title": "Otp", "type": "string", "minLength": 1 }
+            }
+          },
+          "actions": ["postRegister"],
+          "states": ["RegisterList"],
+          "isInfo": false
+        },
+        {
+          "name": "SocialApp",
+          "faName": "",
+          "url": "/accounts/social-app/",
+          "getSchema": {
+            "required": ["provider", "client_id"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "provider": {
+                "title": "فراهم‌کننده",
+                "type": "string",
+                "enum": ["google", "facebook", "apple"]
+              },
+              "client_id": {
+                "title": "شناسه مشتری",
+                "description": "شناسه اپ، یا کلید مصرف‌کننده",
+                "type": "string",
+                "maxLength": 191,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["provider", "client_id"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "provider": {
+                "title": "فراهم‌کننده",
+                "type": "string",
+                "enum": ["google", "facebook", "apple"]
+              },
+              "client_id": {
+                "title": "شناسه مشتری",
+                "description": "شناسه اپ، یا کلید مصرف‌کننده",
+                "type": "string",
+                "maxLength": 191,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": ["getSocialAppList", "postSocialApp"],
+          "states": ["SocialAppList"],
+          "isInfo": false
+        },
+        {
+          "name": "SocialAppInfo",
+          "faName": "",
+          "url": "/accounts/social-app/:id",
+          "getSchema": {
+            "required": ["provider", "client_id"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "provider": {
+                "title": "فراهم‌کننده",
+                "type": "string",
+                "enum": ["google", "facebook", "apple"]
+              },
+              "client_id": {
+                "title": "شناسه مشتری",
+                "description": "شناسه اپ، یا کلید مصرف‌کننده",
+                "type": "string",
+                "maxLength": 191,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["provider", "client_id"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "provider": {
+                "title": "فراهم‌کننده",
+                "type": "string",
+                "enum": ["google", "facebook", "apple"]
+              },
+              "client_id": {
+                "title": "شناسه مشتری",
+                "description": "شناسه اپ، یا کلید مصرف‌کننده",
+                "type": "string",
+                "maxLength": 191,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": [
+            "getSocialAppInfo",
+            "putSocialApp",
+            "patchSocialApp",
+            "deleteSocialApp"
+          ],
+          "states": ["SocialAppInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "UserInformation",
+          "faName": "",
+          "url": "/accounts/user-information/",
+          "getSchema": null,
+          "postSchema": {
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "gender": {
+                "title": "جنسیت",
+                "type": "string",
+                "enum": ["Female", "Male"],
+                "x-nullable": true
+              },
+              "avatar": {
+                "title": "آواتار",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "national_id": {
+                "title": "کدملی",
+                "type": "string",
+                "maxLength": 10,
+                "x-nullable": true
+              },
+              "passport_number": {
+                "title": "شماره پاسپورت",
+                "type": "string",
+                "maxLength": 20,
+                "x-nullable": true
+              },
+              "birth_date": {
+                "title": "تاریخ تولد",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "passport_expire_date": {
+                "title": "تاریخ انقضا پاسپورت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "f_name": { "title": "نام", "type": "string", "maxLength": 200 },
+              "l_name": {
+                "title": "نام خانوادگی",
+                "type": "string",
+                "maxLength": 200
+              },
+              "passport_issure": {
+                "title": "صادرکننده پاسپورت",
+                "type": "integer",
+                "x-nullable": true
+              }
+            }
+          },
+          "actions": ["getUserInformationList", "postUserInformation"],
+          "states": ["UserInformationList"],
+          "isInfo": false
+        }
+      ]
+    },
+    {
+      "name": "base",
+      "faName": "",
+      "subParts": [
+        {
+          "name": "About_us",
+          "faName": "",
+          "url": "/base/about_us/",
+          "getSchema": {
+            "required": ["company_members", "text", "title", "description"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "company_members": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/CompanyMember" }
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "text": {
+                "title": "متن بالای صفحه",
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "description": {
+                "title": "متن پایین صفحه",
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["company_members", "text", "title", "description"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "company_members": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/CompanyMember" }
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "text": {
+                "title": "متن بالای صفحه",
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "description": {
+                "title": "متن پایین صفحه",
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "actions": ["getAbout_usList", "postAbout_us"],
+          "states": ["About_usList"],
+          "isInfo": false
+        },
+        {
+          "name": "About_usInfo",
+          "faName": "",
+          "url": "/base/about_us/:id",
+          "getSchema": {
+            "required": ["company_members", "text", "title", "description"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "company_members": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/CompanyMember" }
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "text": {
+                "title": "متن بالای صفحه",
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "description": {
+                "title": "متن پایین صفحه",
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["company_members", "text", "title", "description"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "company_members": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/CompanyMember" }
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "text": {
+                "title": "متن بالای صفحه",
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "description": {
+                "title": "متن پایین صفحه",
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "actions": [
+            "getAbout_usInfo",
+            "putAbout_us",
+            "patchAbout_us",
+            "deleteAbout_us"
+          ],
+          "states": ["About_usInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Addresses",
+          "faName": "",
+          "url": "/base/addresses/",
+          "getSchema": {
+            "required": [
+              "title",
+              "address",
+              "phone_number",
+              "email",
+              "map_link"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "address": { "title": "آدرس", "type": "string", "minLength": 1 },
+              "phone_number": {
+                "title": "شماره تلفن",
+                "type": "string",
+                "maxLength": 20,
+                "minLength": 1
+              },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              },
+              "registration_number": {
+                "title": "شماره ثبت شرکت",
+                "type": "string",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "license_number": {
+                "title": "شماره پروانه مجوز",
+                "type": "string",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "map_link": {
+                "title": "لینک نقشه",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": [
+              "title",
+              "address",
+              "phone_number",
+              "email",
+              "map_link"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "address": { "title": "آدرس", "type": "string", "minLength": 1 },
+              "phone_number": {
+                "title": "شماره تلفن",
+                "type": "string",
+                "maxLength": 20,
+                "minLength": 1
+              },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              },
+              "registration_number": {
+                "title": "شماره ثبت شرکت",
+                "type": "string",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "license_number": {
+                "title": "شماره پروانه مجوز",
+                "type": "string",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "map_link": {
+                "title": "لینک نقشه",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": ["getAddressesList", "postAddresses"],
+          "states": ["AddressesList"],
+          "isInfo": false
+        },
+        {
+          "name": "AddressesInfo",
+          "faName": "",
+          "url": "/base/addresses/:id",
+          "getSchema": {
+            "required": [
+              "title",
+              "address",
+              "phone_number",
+              "email",
+              "map_link"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "address": { "title": "آدرس", "type": "string", "minLength": 1 },
+              "phone_number": {
+                "title": "شماره تلفن",
+                "type": "string",
+                "maxLength": 20,
+                "minLength": 1
+              },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              },
+              "registration_number": {
+                "title": "شماره ثبت شرکت",
+                "type": "string",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "license_number": {
+                "title": "شماره پروانه مجوز",
+                "type": "string",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "map_link": {
+                "title": "لینک نقشه",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": [
+              "title",
+              "address",
+              "phone_number",
+              "email",
+              "map_link"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "address": { "title": "آدرس", "type": "string", "minLength": 1 },
+              "phone_number": {
+                "title": "شماره تلفن",
+                "type": "string",
+                "maxLength": 20,
+                "minLength": 1
+              },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              },
+              "registration_number": {
+                "title": "شماره ثبت شرکت",
+                "type": "string",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "license_number": {
+                "title": "شماره پروانه مجوز",
+                "type": "string",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "map_link": {
+                "title": "لینک نقشه",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": [
+            "getAddressesInfo",
+            "putAddresses",
+            "patchAddresses",
+            "deleteAddresses"
+          ],
+          "states": ["AddressesInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Cities",
+          "faName": "",
+          "url": "/base/cities/",
+          "getSchema": {
+            "required": ["related_state", "name"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_state": { "$ref": "#/definitions/State" },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["related_state", "name"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_state": { "$ref": "#/definitions/State" },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": ["getCitiesList", "postCities"],
+          "states": ["CitiesList"],
+          "isInfo": false
+        },
+        {
+          "name": "CitiesInfo",
+          "faName": "",
+          "url": "/base/cities/:id",
+          "getSchema": {
+            "required": ["related_state", "name"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_state": { "$ref": "#/definitions/State" },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["related_state", "name"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_state": { "$ref": "#/definitions/State" },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": [
+            "getCitiesInfo",
+            "putCities",
+            "patchCities",
+            "deleteCities"
+          ],
+          "states": ["CitiesInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "CompetitiveAdvantages",
+          "faName": "",
+          "url": "/base/competitive-advantages/",
+          "getSchema": {
+            "required": ["title", "description"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "description": {
+                "title": "توضیحات",
+                "type": "string",
+                "minLength": 1
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title", "description"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "description": {
+                "title": "توضیحات",
+                "type": "string",
+                "minLength": 1
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "actions": [
+            "getCompetitiveAdvantagesList",
+            "postCompetitiveAdvantages"
+          ],
+          "states": ["CompetitiveAdvantagesList"],
+          "isInfo": false
+        },
+        {
+          "name": "CompetitiveAdvantagesInfo",
+          "faName": "",
+          "url": "/base/competitive-advantages/:id",
+          "getSchema": {
+            "required": ["title", "description"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "description": {
+                "title": "توضیحات",
+                "type": "string",
+                "minLength": 1
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title", "description"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "description": {
+                "title": "توضیحات",
+                "type": "string",
+                "minLength": 1
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "actions": [
+            "getCompetitiveAdvantagesInfo",
+            "putCompetitiveAdvantages",
+            "patchCompetitiveAdvantages",
+            "deleteCompetitiveAdvantages"
+          ],
+          "states": ["CompetitiveAdvantagesInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Contact_usDetail",
+          "faName": "",
+          "url": "/base/contact_us/detail/",
+          "getSchema": {
+            "required": ["text"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 }
+            }
+          },
+          "postSchema": {
+            "required": ["text"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 }
+            }
+          },
+          "actions": ["getContact_usDetailList", "postContact_usDetail"],
+          "states": ["Contact_usDetailList"],
+          "isInfo": false
+        },
+        {
+          "name": "Contact_usDetailInfo",
+          "faName": "",
+          "url": "/base/contact_us/detail/:id",
+          "getSchema": {
+            "required": ["text"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 }
+            }
+          },
+          "postSchema": {
+            "required": ["text"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 }
+            }
+          },
+          "actions": [
+            "getContact_usDetailInfo",
+            "putContact_usDetail",
+            "patchContact_usDetail",
+            "deleteContact_usDetail"
+          ],
+          "states": ["Contact_usDetailInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Contact_usForm",
+          "faName": "",
+          "url": "/base/contact_us/form/",
+          "getSchema": {
+            "required": [
+              "first_name",
+              "last_name",
+              "phone_number",
+              "email",
+              "message"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "first_name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "last_name": {
+                "title": "نام خانوادگی",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "phone_number": {
+                "title": "شماره موبایل",
+                "type": "string",
+                "pattern": "^(09|9)\\d{9}$",
+                "maxLength": 11,
+                "minLength": 1
+              },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              },
+              "message": { "title": "پیام", "type": "string", "minLength": 1 }
+            }
+          },
+          "postSchema": {
+            "required": [
+              "first_name",
+              "last_name",
+              "phone_number",
+              "email",
+              "message"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "first_name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "last_name": {
+                "title": "نام خانوادگی",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "phone_number": {
+                "title": "شماره موبایل",
+                "type": "string",
+                "pattern": "^(09|9)\\d{9}$",
+                "maxLength": 11,
+                "minLength": 1
+              },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              },
+              "message": { "title": "پیام", "type": "string", "minLength": 1 }
+            }
+          },
+          "actions": ["getContact_usFormList", "postContact_usForm"],
+          "states": ["Contact_usFormList"],
+          "isInfo": false
+        },
+        {
+          "name": "Contact_usFormInfo",
+          "faName": "",
+          "url": "/base/contact_us/form/:id",
+          "getSchema": {
+            "required": [
+              "first_name",
+              "last_name",
+              "phone_number",
+              "email",
+              "message"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "first_name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "last_name": {
+                "title": "نام خانوادگی",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "phone_number": {
+                "title": "شماره موبایل",
+                "type": "string",
+                "pattern": "^(09|9)\\d{9}$",
+                "maxLength": 11,
+                "minLength": 1
+              },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              },
+              "message": { "title": "پیام", "type": "string", "minLength": 1 }
+            }
+          },
+          "postSchema": {
+            "required": [
+              "first_name",
+              "last_name",
+              "phone_number",
+              "email",
+              "message"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "first_name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "last_name": {
+                "title": "نام خانوادگی",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "phone_number": {
+                "title": "شماره موبایل",
+                "type": "string",
+                "pattern": "^(09|9)\\d{9}$",
+                "maxLength": 11,
+                "minLength": 1
+              },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              },
+              "message": { "title": "پیام", "type": "string", "minLength": 1 }
+            }
+          },
+          "actions": [
+            "getContact_usFormInfo",
+            "putContact_usForm",
+            "patchContact_usForm",
+            "deleteContact_usForm"
+          ],
+          "states": ["Contact_usFormInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Countries",
+          "faName": "",
+          "url": "/base/countries/",
+          "getSchema": {
+            "required": ["name", "type"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "type": {
+                "title": "نوع",
+                "type": "string",
+                "enum": ["داخلی", "خارجی"]
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["name", "type"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "type": {
+                "title": "نوع",
+                "type": "string",
+                "enum": ["داخلی", "خارجی"]
+              }
+            }
+          },
+          "actions": ["getCountriesList", "postCountries"],
+          "states": ["CountriesList"],
+          "isInfo": false
+        },
+        {
+          "name": "CountriesInfo",
+          "faName": "",
+          "url": "/base/countries/:id",
+          "getSchema": {
+            "required": ["name", "type"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "states": {
+                "title": "States",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "type": {
+                "title": "نوع",
+                "type": "string",
+                "enum": ["داخلی", "خارجی"]
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["name", "type"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "type": {
+                "title": "نوع",
+                "type": "string",
+                "enum": ["داخلی", "خارجی"]
+              }
+            }
+          },
+          "actions": [
+            "getCountriesInfo",
+            "putCountries",
+            "patchCountries",
+            "deleteCountries"
+          ],
+          "states": ["CountriesInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Faq",
+          "faName": "",
+          "url": "/base/faq/",
+          "getSchema": {
+            "required": ["question", "answer"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "question": {
+                "title": "سوال",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "answer": { "title": "جواب", "type": "string", "minLength": 1 }
+            }
+          },
+          "postSchema": {
+            "required": ["question", "answer"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "question": {
+                "title": "سوال",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "answer": { "title": "جواب", "type": "string", "minLength": 1 }
+            }
+          },
+          "actions": ["getFaqList", "postFaq"],
+          "states": ["FaqList"],
+          "isInfo": false
+        },
+        {
+          "name": "FaqInfo",
+          "faName": "",
+          "url": "/base/faq/:id",
+          "getSchema": {
+            "required": ["question", "answer"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "question": {
+                "title": "سوال",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "answer": { "title": "جواب", "type": "string", "minLength": 1 }
+            }
+          },
+          "postSchema": {
+            "required": ["question", "answer"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "question": {
+                "title": "سوال",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "answer": { "title": "جواب", "type": "string", "minLength": 1 }
+            }
+          },
+          "actions": ["getFaqInfo", "putFaq", "patchFaq", "deleteFaq"],
+          "states": ["FaqInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Footer",
+          "faName": "",
+          "url": "/base/footer/",
+          "getSchema": {
+            "required": [
+              "columns",
+              "phone_numbers",
+              "social_accounts",
+              "title",
+              "text",
+              "email"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "columns": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/FooterColumn" }
+              },
+              "phone_numbers": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/FooterPhoneNumbers" }
+              },
+              "social_accounts": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/SocialAccount" }
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "icon": {
+                "title": "آیکن",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": [
+              "columns",
+              "phone_numbers",
+              "social_accounts",
+              "title",
+              "text",
+              "email"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "columns": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/FooterColumn" }
+              },
+              "phone_numbers": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/FooterPhoneNumbers" }
+              },
+              "social_accounts": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/SocialAccount" }
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "icon": {
+                "title": "آیکن",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": ["getFooterList", "postFooter"],
+          "states": ["FooterList"],
+          "isInfo": false
+        },
+        {
+          "name": "FooterInfo",
+          "faName": "",
+          "url": "/base/footer/:id",
+          "getSchema": {
+            "required": [
+              "columns",
+              "phone_numbers",
+              "social_accounts",
+              "title",
+              "text",
+              "email"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "columns": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/FooterColumn" }
+              },
+              "phone_numbers": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/FooterPhoneNumbers" }
+              },
+              "social_accounts": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/SocialAccount" }
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "icon": {
+                "title": "آیکن",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": [
+              "columns",
+              "phone_numbers",
+              "social_accounts",
+              "title",
+              "text",
+              "email"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "columns": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/FooterColumn" }
+              },
+              "phone_numbers": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/FooterPhoneNumbers" }
+              },
+              "social_accounts": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/SocialAccount" }
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "icon": {
+                "title": "آیکن",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": [
+            "getFooterInfo",
+            "putFooter",
+            "patchFooter",
+            "deleteFooter"
+          ],
+          "states": ["FooterInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "HomePageDetails",
+          "faName": "",
+          "url": "/base/home-page-details/",
+          "getSchema": {
+            "required": ["related_page", "title", "content"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_page": { "$ref": "#/definitions/Page" },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "content": { "title": "محتوا", "type": "string", "minLength": 1 },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["related_page", "title", "content"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_page": { "$ref": "#/definitions/Page" },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "content": { "title": "محتوا", "type": "string", "minLength": 1 },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "actions": ["getHomePageDetailsList", "postHomePageDetails"],
+          "states": ["HomePageDetailsList"],
+          "isInfo": false
+        },
+        {
+          "name": "HomePageDetailsInfo",
+          "faName": "",
+          "url": "/base/home-page-details/:id",
+          "getSchema": {
+            "required": ["related_page", "title", "content"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_page": { "$ref": "#/definitions/Page" },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "content": { "title": "محتوا", "type": "string", "minLength": 1 },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["related_page", "title", "content"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_page": { "$ref": "#/definitions/Page" },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "content": { "title": "محتوا", "type": "string", "minLength": 1 },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "actions": [
+            "getHomePageDetailsInfo",
+            "putHomePageDetails",
+            "patchHomePageDetails",
+            "deleteHomePageDetails"
+          ],
+          "states": ["HomePageDetailsInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "HomePageIcons",
+          "faName": "",
+          "url": "/base/home-page-icons/",
+          "getSchema": {
+            "required": ["title", "content"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "content": { "title": "محتوا", "type": "string", "minLength": 1 },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title", "content"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "content": { "title": "محتوا", "type": "string", "minLength": 1 },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "actions": ["getHomePageIconsList", "postHomePageIcons"],
+          "states": ["HomePageIconsList"],
+          "isInfo": false
+        },
+        {
+          "name": "HomePageIconsInfo",
+          "faName": "",
+          "url": "/base/home-page-icons/:id",
+          "getSchema": {
+            "required": ["title", "content"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "content": { "title": "محتوا", "type": "string", "minLength": 1 },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title", "content"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "content": { "title": "محتوا", "type": "string", "minLength": 1 },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "actions": [
+            "getHomePageIconsInfo",
+            "putHomePageIcons",
+            "patchHomePageIcons",
+            "deleteHomePageIcons"
+          ],
+          "states": ["HomePageIconsInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Menus",
+          "faName": "",
+          "url": "/base/menus/",
+          "getSchema": {
+            "required": ["title", "link"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "sub_menus": {
+                "title": "Sub menus",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "link": {
+                "title": "لینک",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "order": {
+                "title": "ترتیب نمایش",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": -2147483648
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title", "link"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "sub_menus": {
+                "title": "Sub menus",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "link": {
+                "title": "لینک",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "order": {
+                "title": "ترتیب نمایش",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": -2147483648
+              }
+            }
+          },
+          "actions": ["getMenusList", "postMenus"],
+          "states": ["MenusList"],
+          "isInfo": false
+        },
+        {
+          "name": "MenusInfo",
+          "faName": "",
+          "url": "/base/menus/:id",
+          "getSchema": {
+            "required": ["title", "link"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "sub_menus": {
+                "title": "Sub menus",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "link": {
+                "title": "لینک",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "order": {
+                "title": "ترتیب نمایش",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": -2147483648
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title", "link"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "sub_menus": {
+                "title": "Sub menus",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "link": {
+                "title": "لینک",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "order": {
+                "title": "ترتیب نمایش",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": -2147483648
+              }
+            }
+          },
+          "actions": ["getMenusInfo", "putMenus", "patchMenus", "deleteMenus"],
+          "states": ["MenusInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Slider",
+          "faName": "",
+          "url": "/base/slider/",
+          "getSchema": {
+            "required": ["title", "text"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 },
+              "link": {
+                "title": "لینک",
+                "type": "string",
+                "maxLength": 500,
+                "x-nullable": true
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title", "text"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 },
+              "link": {
+                "title": "لینک",
+                "type": "string",
+                "maxLength": 500,
+                "x-nullable": true
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "actions": ["getSliderList", "postSlider"],
+          "states": ["SliderList"],
+          "isInfo": false
+        },
+        {
+          "name": "SliderInfo",
+          "faName": "",
+          "url": "/base/slider/:id",
+          "getSchema": {
+            "required": ["title", "text"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 },
+              "link": {
+                "title": "لینک",
+                "type": "string",
+                "maxLength": 500,
+                "x-nullable": true
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title", "text"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 },
+              "link": {
+                "title": "لینک",
+                "type": "string",
+                "maxLength": 500,
+                "x-nullable": true
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "actions": [
+            "getSliderInfo",
+            "putSlider",
+            "patchSlider",
+            "deleteSlider"
+          ],
+          "states": ["SliderInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "States",
+          "faName": "",
+          "url": "/base/states/",
+          "getSchema": {
+            "required": ["name", "related_country"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "related_country": { "title": "کشور مربوطه", "type": "integer" }
+            }
+          },
+          "postSchema": {
+            "required": ["name", "related_country"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "related_country": { "title": "کشور مربوطه", "type": "integer" }
+            }
+          },
+          "actions": ["getStatesList", "postStates"],
+          "states": ["StatesList"],
+          "isInfo": false
+        },
+        {
+          "name": "StatesInfo",
+          "faName": "",
+          "url": "/base/states/:id",
+          "getSchema": {
+            "required": ["name", "related_country"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "cities": {
+                "title": "Cities",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "related_country": { "title": "کشور مربوطه", "type": "integer" }
+            }
+          },
+          "postSchema": {
+            "required": ["name", "related_country"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "related_country": { "title": "کشور مربوطه", "type": "integer" }
+            }
+          },
+          "actions": [
+            "getStatesInfo",
+            "putStates",
+            "patchStates",
+            "deleteStates"
+          ],
+          "states": ["StatesInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "TermsAndConditions",
+          "faName": "",
+          "url": "/base/terms-and-conditions/",
+          "getSchema": {
+            "required": ["text"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 }
+            }
+          },
+          "postSchema": {
+            "required": ["text"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 }
+            }
+          },
+          "actions": ["getTermsAndConditionsList", "postTermsAndConditions"],
+          "states": ["TermsAndConditionsList"],
+          "isInfo": false
+        },
+        {
+          "name": "TermsAndConditionsInfo",
+          "faName": "",
+          "url": "/base/terms-and-conditions/:id",
+          "getSchema": {
+            "required": ["text"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 }
+            }
+          },
+          "postSchema": {
+            "required": ["text"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "text": { "title": "متن", "type": "string", "minLength": 1 }
+            }
+          },
+          "actions": [
+            "getTermsAndConditionsInfo",
+            "putTermsAndConditions",
+            "patchTermsAndConditions",
+            "deleteTermsAndConditions"
+          ],
+          "states": ["TermsAndConditionsInfo"],
+          "isInfo": true
+        }
+      ]
+    },
+    {
+      "name": "blog",
+      "faName": "",
+      "subParts": [
+        {
+          "name": "Comments",
+          "faName": "",
+          "url": "/blog/comments/",
+          "getSchema": {
+            "required": ["content", "related_post"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "content": { "title": "متن", "type": "string", "minLength": 1 },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_accepted": { "title": "تایید شده", "type": "boolean" },
+              "related_post": { "title": "پست مربوطه", "type": "integer" },
+              "related_comment": {
+                "title": "کامنت مربوطه",
+                "type": "integer",
+                "x-nullable": true
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["content", "related_post"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "content": { "title": "متن", "type": "string", "minLength": 1 },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_accepted": { "title": "تایید شده", "type": "boolean" },
+              "related_post": { "title": "پست مربوطه", "type": "integer" },
+              "related_comment": {
+                "title": "کامنت مربوطه",
+                "type": "integer",
+                "x-nullable": true
+              }
+            }
+          },
+          "actions": ["getCommentsList", "postComments"],
+          "states": ["CommentsList"],
+          "isInfo": false
+        },
+        {
+          "name": "CommentsInfo",
+          "faName": "",
+          "url": "/blog/comments/:id",
+          "getSchema": {
+            "required": ["content", "related_post"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "content": { "title": "متن", "type": "string", "minLength": 1 },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_accepted": { "title": "تایید شده", "type": "boolean" },
+              "related_post": { "title": "پست مربوطه", "type": "integer" },
+              "related_comment": {
+                "title": "کامنت مربوطه",
+                "type": "integer",
+                "x-nullable": true
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["content", "related_post"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "content": { "title": "متن", "type": "string", "minLength": 1 },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_accepted": { "title": "تایید شده", "type": "boolean" },
+              "related_post": { "title": "پست مربوطه", "type": "integer" },
+              "related_comment": {
+                "title": "کامنت مربوطه",
+                "type": "integer",
+                "x-nullable": true
+              }
+            }
+          },
+          "actions": [
+            "getCommentsInfo",
+            "putComments",
+            "patchComments",
+            "deleteComments"
+          ],
+          "states": ["CommentsInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Post_categories",
+          "faName": "",
+          "url": "/blog/post_categories/",
+          "getSchema": {
+            "required": ["title"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_active": { "title": "فعال", "type": "boolean" },
+              "title": {
+                "title": "عنوان",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_active": { "title": "فعال", "type": "boolean" },
+              "title": {
+                "title": "عنوان",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": ["getPost_categoriesList", "postPost_categories"],
+          "states": ["Post_categoriesList"],
+          "isInfo": false
+        },
+        {
+          "name": "Post_categoriesInfo",
+          "faName": "",
+          "url": "/blog/post_categories/:id",
+          "getSchema": {
+            "required": ["title"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_active": { "title": "فعال", "type": "boolean" },
+              "title": {
+                "title": "عنوان",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_active": { "title": "فعال", "type": "boolean" },
+              "title": {
+                "title": "عنوان",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": [
+            "getPost_categoriesInfo",
+            "putPost_categories",
+            "patchPost_categories",
+            "deletePost_categories"
+          ],
+          "states": ["Post_categoriesInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Posts",
+          "faName": "",
+          "url": "/blog/posts/",
+          "getSchema": {
+            "required": ["title", "related_post_category"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "thumbnail": {
+                "title": "تصویر",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "title": {
+                "title": "عنوان",
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              "related_post_category": {
+                "title": "دسته بندی مربوطه",
+                "type": "integer"
+              },
+              "show_in_home_page": {
+                "title": "Show in home page",
+                "type": "boolean"
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "video": {
+                "title": "ویدئو",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title", "related_post_category"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "thumbnail": {
+                "title": "تصویر",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "title": {
+                "title": "عنوان",
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              "related_post_category": {
+                "title": "دسته بندی مربوطه",
+                "type": "integer"
+              },
+              "show_in_home_page": {
+                "title": "Show in home page",
+                "type": "boolean"
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "video": {
+                "title": "ویدئو",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              }
+            }
+          },
+          "actions": ["getPostsList", "postPosts"],
+          "states": ["PostsList"],
+          "isInfo": false
+        },
+        {
+          "name": "PostsInfo",
+          "faName": "",
+          "url": "/blog/posts/:id",
+          "getSchema": {
+            "required": [
+              "related_posts",
+              "title",
+              "description",
+              "content",
+              "seo_title",
+              "seo_description",
+              "related_post_category"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "tags": { "title": "Tags", "type": "string", "readOnly": true },
+              "related_posts": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/Post" }
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "is_active": { "title": "فعال", "type": "boolean" },
+              "title": {
+                "title": "عنوان",
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              "thumbnail": {
+                "title": "تصویر",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "video": {
+                "title": "ویدئو",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "description": {
+                "title": "توضیحات مختصر",
+                "type": "string",
+                "minLength": 1
+              },
+              "content": {
+                "title": "محتوای پست",
+                "type": "string",
+                "minLength": 1
+              },
+              "show_in_home_page": {
+                "title": "Show in home page",
+                "type": "boolean"
+              },
+              "seo_title": {
+                "title": "عنوان سئو",
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              "seo_description": {
+                "title": "توضیحات سئو",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "related_post_category": {
+                "title": "دسته بندی مربوطه",
+                "type": "integer"
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title", "related_post_category"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "thumbnail": {
+                "title": "تصویر",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "title": {
+                "title": "عنوان",
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              "related_post_category": {
+                "title": "دسته بندی مربوطه",
+                "type": "integer"
+              },
+              "show_in_home_page": {
+                "title": "Show in home page",
+                "type": "boolean"
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "video": {
+                "title": "ویدئو",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              }
+            }
+          },
+          "actions": ["getPostsInfo", "putPosts", "patchPosts", "deletePosts"],
+          "states": ["PostsInfo"],
+          "isInfo": true
+        }
+      ]
+    },
+    {
+      "name": "newsletters",
+      "faName": "",
+      "subParts": [
+        {
+          "name": "Register",
+          "faName": "",
+          "url": "/newsletters/register/",
+          "getSchema": {
+            "required": ["email"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["email"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": ["getRegisterList", "postRegister"],
+          "states": ["RegisterList"],
+          "isInfo": false
+        },
+        {
+          "name": "RegisterInfo",
+          "faName": "",
+          "url": "/newsletters/register/:id",
+          "getSchema": {
+            "required": ["email"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["email"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "email": {
+                "title": "ایمیل",
+                "type": "string",
+                "format": "email",
+                "maxLength": 254,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": [
+            "getRegisterInfo",
+            "putRegister",
+            "patchRegister",
+            "deleteRegister"
+          ],
+          "states": ["RegisterInfo"],
+          "isInfo": true
+        }
+      ]
+    },
+    {
+      "name": "order",
+      "faName": "",
+      "subParts": [
+        {
+          "name": "Tour",
+          "faName": "",
+          "url": "/order/tour/",
+          "getSchema": {
+            "required": [
+              "related_tour",
+              "related_travelers",
+              "related_payment"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_tour": { "$ref": "#/definitions/TourItem" },
+              "related_travelers": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/UserInformation" }
+              },
+              "related_payment": { "$ref": "#/definitions/Payment" },
+              "use_wallet": {
+                "title": "استفاده از کیف پول",
+                "type": "boolean"
+              },
+              "price": {
+                "title": "قیمت (ریال)",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["related_tour"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "use_wallet": {
+                "title": "استفاده از کیف پول",
+                "type": "boolean"
+              },
+              "related_tour": { "title": "تور مربوطه", "type": "integer" },
+              "related_travelers": {
+                "type": "array",
+                "items": {
+                  "title": "همسفران",
+                  "type": "integer",
+                  "x-nullable": true
+                },
+                "uniqueItems": true
+              }
+            }
+          },
+          "actions": ["getTourList", "postTour"],
+          "states": ["TourList"],
+          "isInfo": false
+        },
+        {
+          "name": "TourInfo",
+          "faName": "",
+          "url": "/order/tour/:id",
+          "getSchema": {
+            "required": [
+              "related_tour",
+              "related_travelers",
+              "related_payment"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_tour": { "$ref": "#/definitions/TourItem" },
+              "related_travelers": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/UserInformation" }
+              },
+              "related_payment": { "$ref": "#/definitions/Payment" },
+              "use_wallet": {
+                "title": "استفاده از کیف پول",
+                "type": "boolean"
+              },
+              "price": {
+                "title": "قیمت (ریال)",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["related_tour"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "use_wallet": {
+                "title": "استفاده از کیف پول",
+                "type": "boolean"
+              },
+              "related_tour": { "title": "تور مربوطه", "type": "integer" },
+              "related_travelers": {
+                "type": "array",
+                "items": {
+                  "title": "همسفران",
+                  "type": "integer",
+                  "x-nullable": true
+                },
+                "uniqueItems": true
+              }
+            }
+          },
+          "actions": ["getTourInfo", "putTour", "patchTour", "deleteTour"],
+          "states": ["TourInfo"],
+          "isInfo": true
+        }
+      ]
+    },
+    {
+      "name": "payments",
+      "faName": "",
+      "subParts": [
+        {
+          "name": "Payment",
+          "faName": "",
+          "url": "/payments/payment/",
+          "getSchema": {
+            "required": ["amount"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "amount": {
+                "title": "مبلغ",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              },
+              "ref_id": {
+                "title": "شماره تراکنش",
+                "type": "string",
+                "maxLength": 512,
+                "x-nullable": true
+              },
+              "status": {
+                "title": "وضعیت",
+                "type": "string",
+                "enum": ["S", "U", "C", "A"]
+              },
+              "authority": {
+                "title": "شناسه مرجع",
+                "type": "string",
+                "maxLength": 512,
+                "x-nullable": true
+              },
+              "link": {
+                "title": "لینک درگاه پرداخت",
+                "type": "string",
+                "format": "uri",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["amount"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "amount": {
+                "title": "مبلغ",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              },
+              "ref_id": {
+                "title": "شماره تراکنش",
+                "type": "string",
+                "maxLength": 512,
+                "x-nullable": true
+              },
+              "status": {
+                "title": "وضعیت",
+                "type": "string",
+                "enum": ["S", "U", "C", "A"]
+              },
+              "authority": {
+                "title": "شناسه مرجع",
+                "type": "string",
+                "maxLength": 512,
+                "x-nullable": true
+              },
+              "link": {
+                "title": "لینک درگاه پرداخت",
+                "type": "string",
+                "format": "uri",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              }
+            }
+          },
+          "actions": ["getPaymentList", "postPayment"],
+          "states": ["PaymentList"],
+          "isInfo": false
+        },
+        {
+          "name": "PaymentInfo",
+          "faName": "",
+          "url": "/payments/payment/:id",
+          "getSchema": {
+            "required": ["amount"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "amount": {
+                "title": "مبلغ",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              },
+              "ref_id": {
+                "title": "شماره تراکنش",
+                "type": "string",
+                "maxLength": 512,
+                "x-nullable": true
+              },
+              "status": {
+                "title": "وضعیت",
+                "type": "string",
+                "enum": ["S", "U", "C", "A"]
+              },
+              "authority": {
+                "title": "شناسه مرجع",
+                "type": "string",
+                "maxLength": 512,
+                "x-nullable": true
+              },
+              "link": {
+                "title": "لینک درگاه پرداخت",
+                "type": "string",
+                "format": "uri",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["amount"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "amount": {
+                "title": "مبلغ",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              },
+              "ref_id": {
+                "title": "شماره تراکنش",
+                "type": "string",
+                "maxLength": 512,
+                "x-nullable": true
+              },
+              "status": {
+                "title": "وضعیت",
+                "type": "string",
+                "enum": ["S", "U", "C", "A"]
+              },
+              "authority": {
+                "title": "شناسه مرجع",
+                "type": "string",
+                "maxLength": 512,
+                "x-nullable": true
+              },
+              "link": {
+                "title": "لینک درگاه پرداخت",
+                "type": "string",
+                "format": "uri",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              }
+            }
+          },
+          "actions": [
+            "getPaymentInfo",
+            "putPayment",
+            "patchPayment",
+            "deletePayment"
+          ],
+          "states": ["PaymentInfo"],
+          "isInfo": true
+        }
+      ]
+    },
+    {
+      "name": "tour",
+      "faName": "",
+      "subParts": [
+        {
+          "name": "AdditionalFeatures",
+          "faName": "",
+          "url": "/tour/additional-features/",
+          "getSchema": {
+            "required": ["title"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "actions": ["getAdditionalFeaturesList", "postAdditionalFeatures"],
+          "states": ["AdditionalFeaturesList"],
+          "isInfo": false
+        },
+        {
+          "name": "AdditionalFeaturesInfo",
+          "faName": "",
+          "url": "/tour/additional-features/:id",
+          "getSchema": {
+            "required": ["title"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["title"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "icon": {
+                "title": "آیکون",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              }
+            }
+          },
+          "actions": [
+            "getAdditionalFeaturesInfo",
+            "putAdditionalFeatures",
+            "patchAdditionalFeatures",
+            "deleteAdditionalFeatures"
+          ],
+          "states": ["AdditionalFeaturesInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Airplanes",
+          "faName": "",
+          "url": "/tour/airplanes/",
+          "getSchema": {
+            "required": ["name"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام هواپیما",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["name"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام هواپیما",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": ["getAirplanesList", "postAirplanes"],
+          "states": ["AirplanesList"],
+          "isInfo": false
+        },
+        {
+          "name": "AirplanesInfo",
+          "faName": "",
+          "url": "/tour/airplanes/:id",
+          "getSchema": {
+            "required": ["name"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام هواپیما",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              }
+            }
+          },
+          "postSchema": {
+            "required": ["name"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "name": {
+                "title": "نام هواپیما",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              }
+            }
+          },
+          "actions": [
+            "getAirplanesInfo",
+            "putAirplanes",
+            "patchAirplanes",
+            "deleteAirplanes"
+          ],
+          "states": ["AirplanesInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Locations",
+          "faName": "",
+          "url": "/tour/locations/",
+          "getSchema": {
+            "required": [
+              "related_country",
+              "title",
+              "description",
+              "phone_number"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_country": { "$ref": "#/definitions/Country" },
+              "start_price": {
+                "title": "Start price",
+                "type": "string",
+                "readOnly": true
+              },
+              "start_date": {
+                "title": "Start date",
+                "type": "string",
+                "readOnly": true
+              },
+              "start_duration": {
+                "title": "Start duration",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "description": {
+                "title": "توضیحات",
+                "type": "string",
+                "minLength": 1
+              },
+              "phone_number": {
+                "title": "شماره تلفن",
+                "type": "string",
+                "maxLength": 20,
+                "minLength": 1
+              },
+              "is_suggested": { "title": "پیشنهادی", "type": "boolean" }
+            }
+          },
+          "postSchema": {
+            "required": [
+              "related_country",
+              "title",
+              "description",
+              "phone_number"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_country": { "$ref": "#/definitions/Country" },
+              "start_price": {
+                "title": "Start price",
+                "type": "string",
+                "readOnly": true
+              },
+              "start_date": {
+                "title": "Start date",
+                "type": "string",
+                "readOnly": true
+              },
+              "start_duration": {
+                "title": "Start duration",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "description": {
+                "title": "توضیحات",
+                "type": "string",
+                "minLength": 1
+              },
+              "phone_number": {
+                "title": "شماره تلفن",
+                "type": "string",
+                "maxLength": 20,
+                "minLength": 1
+              },
+              "is_suggested": { "title": "پیشنهادی", "type": "boolean" }
+            }
+          },
+          "actions": ["getLocationsList", "postLocations"],
+          "states": ["LocationsList"],
+          "isInfo": false
+        },
+        {
+          "name": "LocationsInfo",
+          "faName": "",
+          "url": "/tour/locations/:id",
+          "getSchema": {
+            "required": [
+              "related_country",
+              "title",
+              "description",
+              "phone_number"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_country": { "$ref": "#/definitions/Country" },
+              "tours": { "title": "Tours", "type": "string", "readOnly": true },
+              "images": {
+                "title": "Images",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "description": {
+                "title": "توضیحات",
+                "type": "string",
+                "minLength": 1
+              },
+              "phone_number": {
+                "title": "شماره تلفن",
+                "type": "string",
+                "maxLength": 20,
+                "minLength": 1
+              },
+              "is_suggested": { "title": "پیشنهادی", "type": "boolean" }
+            }
+          },
+          "postSchema": {
+            "required": [
+              "related_country",
+              "title",
+              "description",
+              "phone_number"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "related_country": { "$ref": "#/definitions/Country" },
+              "start_price": {
+                "title": "Start price",
+                "type": "string",
+                "readOnly": true
+              },
+              "start_date": {
+                "title": "Start date",
+                "type": "string",
+                "readOnly": true
+              },
+              "start_duration": {
+                "title": "Start duration",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "image": {
+                "title": "عکس",
+                "type": "string",
+                "readOnly": true,
+                "format": "uri"
+              },
+              "description": {
+                "title": "توضیحات",
+                "type": "string",
+                "minLength": 1
+              },
+              "phone_number": {
+                "title": "شماره تلفن",
+                "type": "string",
+                "maxLength": 20,
+                "minLength": 1
+              },
+              "is_suggested": { "title": "پیشنهادی", "type": "boolean" }
+            }
+          },
+          "actions": [
+            "getLocationsInfo",
+            "putLocations",
+            "patchLocations",
+            "deleteLocations"
+          ],
+          "states": ["LocationsInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "Prices",
+          "faName": "",
+          "url": "/tour/prices/",
+          "getSchema": null,
+          "postSchema": null,
+          "actions": ["getPricesList"],
+          "states": ["PricesList"],
+          "isInfo": false
+        },
+        {
+          "name": "Tours",
+          "faName": "",
+          "url": "/tour/tours/",
+          "getSchema": {
+            "required": [
+              "additional_features",
+              "location",
+              "depart_airplane_model",
+              "return_airplane_model",
+              "return_city",
+              "departure_city"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "additional_features": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/AdditionalFeature" }
+              },
+              "location": { "$ref": "#/definitions/Location" },
+              "depart_airplane_model": {
+                "$ref": "#/definitions/AirplaneModel"
+              },
+              "return_airplane_model": {
+                "$ref": "#/definitions/AirplaneModel"
+              },
+              "return_city": { "$ref": "#/definitions/City" },
+              "departure_city": { "$ref": "#/definitions/City" },
+              "travelers": {
+                "title": "Travelers",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "image": {
+                "title": "عکس شاخص",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "departure_date": {
+                "title": "تاریخ حرکت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "tours_duration": {
+                "title": "مدت زمان تور",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0,
+                "x-nullable": true
+              },
+              "depart_flight_date": {
+                "title": "تاریخ پرواز رفت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "depart_flight_start_time": {
+                "title": "ساعت شروع پرواز رفت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "depart_flight_duration": {
+                "title": "مدت زمان پرواز رفت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "depart_flight_landing_time": {
+                "title": "ساعت فرود پرواز رفت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_date": {
+                "title": "تاریخ پرواز برگشت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "return_flight_start_time": {
+                "title": "ساعت شروع پرواز برگشت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_duration": {
+                "title": "مدت زمان پرواز برگشت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_landing_time": {
+                "title": "ساعت فرود پرواز برگشت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "hotel_stars": {
+                "title": "ستاره های هتل",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": -2147483648
+              },
+              "price": {
+                "title": "قیمت (ریال)",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              }
+            }
+          },
+          "postSchema": {
+            "required": [
+              "additional_features",
+              "location",
+              "depart_airplane_model",
+              "return_airplane_model",
+              "return_city",
+              "departure_city"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "additional_features": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/AdditionalFeature" }
+              },
+              "location": { "$ref": "#/definitions/Location" },
+              "depart_airplane_model": {
+                "$ref": "#/definitions/AirplaneModel"
+              },
+              "return_airplane_model": {
+                "$ref": "#/definitions/AirplaneModel"
+              },
+              "return_city": { "$ref": "#/definitions/City" },
+              "departure_city": { "$ref": "#/definitions/City" },
+              "travelers": {
+                "title": "Travelers",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "image": {
+                "title": "عکس شاخص",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "departure_date": {
+                "title": "تاریخ حرکت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "tours_duration": {
+                "title": "مدت زمان تور",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0,
+                "x-nullable": true
+              },
+              "depart_flight_date": {
+                "title": "تاریخ پرواز رفت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "depart_flight_start_time": {
+                "title": "ساعت شروع پرواز رفت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "depart_flight_duration": {
+                "title": "مدت زمان پرواز رفت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "depart_flight_landing_time": {
+                "title": "ساعت فرود پرواز رفت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_date": {
+                "title": "تاریخ پرواز برگشت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "return_flight_start_time": {
+                "title": "ساعت شروع پرواز برگشت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_duration": {
+                "title": "مدت زمان پرواز برگشت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_landing_time": {
+                "title": "ساعت فرود پرواز برگشت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "hotel_stars": {
+                "title": "ستاره های هتل",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": -2147483648
+              },
+              "price": {
+                "title": "قیمت (ریال)",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              }
+            }
+          },
+          "actions": ["getToursList", "postTours"],
+          "states": ["ToursList"],
+          "isInfo": false
+        },
+        {
+          "name": "ToursInfo",
+          "faName": "",
+          "url": "/tour/tours/:id",
+          "getSchema": {
+            "required": [
+              "additional_features",
+              "location",
+              "depart_airplane_model",
+              "return_airplane_model",
+              "travelers",
+              "return_city",
+              "departure_city"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "additional_features": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/AdditionalFeature" }
+              },
+              "location": { "$ref": "#/definitions/Location" },
+              "depart_airplane_model": {
+                "$ref": "#/definitions/AirplaneModel"
+              },
+              "return_airplane_model": {
+                "$ref": "#/definitions/AirplaneModel"
+              },
+              "travelers": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/UserInformation" }
+              },
+              "return_city": { "$ref": "#/definitions/City" },
+              "departure_city": { "$ref": "#/definitions/City" },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "image": {
+                "title": "عکس شاخص",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "departure_date": {
+                "title": "تاریخ حرکت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "tours_duration": {
+                "title": "مدت زمان تور",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0,
+                "x-nullable": true
+              },
+              "depart_flight_date": {
+                "title": "تاریخ پرواز رفت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "depart_flight_start_time": {
+                "title": "ساعت شروع پرواز رفت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "depart_flight_duration": {
+                "title": "مدت زمان پرواز رفت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "depart_flight_landing_time": {
+                "title": "ساعت فرود پرواز رفت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_date": {
+                "title": "تاریخ پرواز برگشت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "return_flight_start_time": {
+                "title": "ساعت شروع پرواز برگشت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_duration": {
+                "title": "مدت زمان پرواز برگشت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_landing_time": {
+                "title": "ساعت فرود پرواز برگشت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "hotel_stars": {
+                "title": "ستاره های هتل",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": -2147483648
+              },
+              "price": {
+                "title": "قیمت (ریال)",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              }
+            }
+          },
+          "postSchema": {
+            "required": [
+              "additional_features",
+              "location",
+              "depart_airplane_model",
+              "return_airplane_model",
+              "return_city",
+              "departure_city"
+            ],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "additional_features": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/AdditionalFeature" }
+              },
+              "location": { "$ref": "#/definitions/Location" },
+              "depart_airplane_model": {
+                "$ref": "#/definitions/AirplaneModel"
+              },
+              "return_airplane_model": {
+                "$ref": "#/definitions/AirplaneModel"
+              },
+              "return_city": { "$ref": "#/definitions/City" },
+              "departure_city": { "$ref": "#/definitions/City" },
+              "travelers": {
+                "title": "Travelers",
+                "type": "string",
+                "readOnly": true
+              },
+              "created_date": {
+                "title": "زمان ایجاد",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "modified_date": {
+                "title": "زمان بروز رسانی",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "title": {
+                "title": "تایتل",
+                "type": "string",
+                "maxLength": 200,
+                "x-nullable": true
+              },
+              "image": {
+                "title": "عکس شاخص",
+                "type": "string",
+                "readOnly": true,
+                "x-nullable": true,
+                "format": "uri"
+              },
+              "departure_date": {
+                "title": "تاریخ حرکت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "tours_duration": {
+                "title": "مدت زمان تور",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0,
+                "x-nullable": true
+              },
+              "depart_flight_date": {
+                "title": "تاریخ پرواز رفت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "depart_flight_start_time": {
+                "title": "ساعت شروع پرواز رفت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "depart_flight_duration": {
+                "title": "مدت زمان پرواز رفت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "depart_flight_landing_time": {
+                "title": "ساعت فرود پرواز رفت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_date": {
+                "title": "تاریخ پرواز برگشت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "return_flight_start_time": {
+                "title": "ساعت شروع پرواز برگشت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_duration": {
+                "title": "مدت زمان پرواز برگشت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_landing_time": {
+                "title": "ساعت فرود پرواز برگشت",
+                "type": "string",
+                "x-nullable": true
+              },
+              "hotel_stars": {
+                "title": "ستاره های هتل",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": -2147483648
+              },
+              "price": {
+                "title": "قیمت (ریال)",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0
+              }
+            }
+          },
+          "actions": ["getToursInfo", "putTours", "patchTours", "deleteTours"],
+          "states": ["ToursInfo"],
+          "isInfo": true
+        },
+        {
+          "name": "UserRequested",
+          "faName": "",
+          "url": "/tour/user-requested/",
+          "getSchema": {
+            "required": ["name", "departure_city", "return_city"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "name": {
+                "title": "نام و نام خانوادگی",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "phone_number": {
+                "title": "شماره موبایل",
+                "type": "string",
+                "pattern": "^9\\d{9}$",
+                "maxLength": 10,
+                "x-nullable": true
+              },
+              "description": {
+                "title": "توضیحات",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_date": {
+                "title": "تاریخ پرواز برگشت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "depart_flight_date": {
+                "title": "تاریخ پرواز رفت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "childs": {
+                "title": "تعداد خردسال",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0,
+                "x-nullable": true
+              },
+              "passengers": {
+                "title": "تعداد بزرگسال",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0,
+                "x-nullable": true
+              },
+              "departure_city": { "title": "شهر مبدا", "type": "integer" },
+              "return_city": { "title": "شهر مقصد", "type": "integer" }
+            }
+          },
+          "postSchema": {
+            "required": ["name", "departure_city", "return_city"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "name": {
+                "title": "نام و نام خانوادگی",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "phone_number": {
+                "title": "شماره موبایل",
+                "type": "string",
+                "pattern": "^9\\d{9}$",
+                "maxLength": 10,
+                "x-nullable": true
+              },
+              "description": {
+                "title": "توضیحات",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_date": {
+                "title": "تاریخ پرواز برگشت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "depart_flight_date": {
+                "title": "تاریخ پرواز رفت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "childs": {
+                "title": "تعداد خردسال",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0,
+                "x-nullable": true
+              },
+              "passengers": {
+                "title": "تعداد بزرگسال",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0,
+                "x-nullable": true
+              },
+              "departure_city": { "title": "شهر مبدا", "type": "integer" },
+              "return_city": { "title": "شهر مقصد", "type": "integer" }
+            }
+          },
+          "actions": ["getUserRequestedList", "postUserRequested"],
+          "states": ["UserRequestedList"],
+          "isInfo": false
+        },
+        {
+          "name": "UserRequestedInfo",
+          "faName": "",
+          "url": "/tour/user-requested/:id",
+          "getSchema": {
+            "required": ["name", "departure_city", "return_city"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "name": {
+                "title": "نام و نام خانوادگی",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "phone_number": {
+                "title": "شماره موبایل",
+                "type": "string",
+                "pattern": "^9\\d{9}$",
+                "maxLength": 10,
+                "x-nullable": true
+              },
+              "description": {
+                "title": "توضیحات",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_date": {
+                "title": "تاریخ پرواز برگشت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "depart_flight_date": {
+                "title": "تاریخ پرواز رفت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "childs": {
+                "title": "تعداد خردسال",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0,
+                "x-nullable": true
+              },
+              "passengers": {
+                "title": "تعداد بزرگسال",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0,
+                "x-nullable": true
+              },
+              "departure_city": { "title": "شهر مبدا", "type": "integer" },
+              "return_city": { "title": "شهر مقصد", "type": "integer" }
+            }
+          },
+          "postSchema": {
+            "required": ["name", "departure_city", "return_city"],
+            "type": "object",
+            "properties": {
+              "id": { "title": "ID", "type": "integer", "readOnly": true },
+              "name": {
+                "title": "نام و نام خانوادگی",
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "phone_number": {
+                "title": "شماره موبایل",
+                "type": "string",
+                "pattern": "^9\\d{9}$",
+                "maxLength": 10,
+                "x-nullable": true
+              },
+              "description": {
+                "title": "توضیحات",
+                "type": "string",
+                "x-nullable": true
+              },
+              "return_flight_date": {
+                "title": "تاریخ پرواز برگشت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "depart_flight_date": {
+                "title": "تاریخ پرواز رفت",
+                "type": "string",
+                "format": "date",
+                "x-nullable": true
+              },
+              "childs": {
+                "title": "تعداد خردسال",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0,
+                "x-nullable": true
+              },
+              "passengers": {
+                "title": "تعداد بزرگسال",
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": 0,
+                "x-nullable": true
+              },
+              "departure_city": { "title": "شهر مبدا", "type": "integer" },
+              "return_city": { "title": "شهر مقصد", "type": "integer" }
+            }
+          },
+          "actions": [
+            "getUserRequestedInfo",
+            "putUserRequested",
+            "patchUserRequested",
+            "deleteUserRequested"
+          ],
+          "states": ["UserRequestedInfo"],
+          "isInfo": true
+        }
+      ]
+    }
+  ]
+}
